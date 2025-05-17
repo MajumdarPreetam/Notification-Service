@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Notification Service</h1>
+
+        <div class="form-section">
+            <h2>Send Notification</h2>
+            <form action="/send-form" method="post">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" required>
+
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="email">Email</option>
+                    <option value="sms">SMS</option>
+                    <option value="in-app">In-App</option>
+                </select>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>Get Notifications</h2>
+            <form action="/get-notifications" method="get">
+                <label for="getUserId">User ID:</label>
+                <input type="text" id="getUserId" name="userId" required>
+                <button type="submit">View Notifications</button>
+            </form>
+        </div>
+
+        {% if userId %}
+        <form action="/process" method="post">
+            <input type="hidden" name="userId" value="{{ userId }}">
+            <button type="submit">Process Notification Queue</button>
+        </form>
+        {% endif %}
+
+        {% if notifications %}
+            <h3>Notifications for {{ userId }}</h3>
+            <ul>
+            {% for n in notifications %}
+                <li><strong>{{ n.type }}</strong>: {{ n.message }} ({{ n.status }})</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
