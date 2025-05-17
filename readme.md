@@ -32,8 +32,8 @@ notification_service/
 a) Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/notification-service.git
-cd notification-service
+git clone https://github.com/MajumdarPreetam/Notification-Service.git
+cd Notification-Service
 ```
 b) Install dependencies:
 
@@ -69,11 +69,3 @@ a) Actual sending of emails/SMS is not implemented (this is a simulation).
 b) User ID is treated as a string (e.g., `user123`).
 c) Queue processing is simulated within the application logic.
 
-
-
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
